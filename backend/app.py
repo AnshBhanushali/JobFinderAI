@@ -5,7 +5,6 @@ from models.job_recomModel import JobRecommendationModel
 app = Flask(__name__)
 CORS(app)
 
-# Initialize the job recommendation model
 job_model = JobRecommendationModel()
 
 @app.route('/recommend', methods=['POST'])
@@ -13,7 +12,7 @@ def recommend():
     user_data = request.json
     user_resume = user_data['resume']
 
-    # Get job recommendations
+   
     recommendations = job_model.recommend_jobs(user_resume)
 
     return jsonify(recommendations)

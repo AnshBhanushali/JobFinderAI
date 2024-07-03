@@ -9,9 +9,16 @@ import os
 app = Flask(__name__)
 CORS(app)
 
-#Database connection
+# Database connection
 db_user = os.getenv('POSTGRES_USER')
 db_password = os.getenv('POSTGRES_PASSWORD')
 db_name = os.getenv('POSTGRES_DB')
 db_host = 'db'
 engine = create_engine(f'postgresql://{db_user}:{db_password}@{db_host}:5432/{db_name}')
+
+# Load Datasets
+jobs = pd.read_sql('jobs', engine)
+
+# Vectorize job description
+vectorizer = TfidfVectorizer(stop_words='english')
+job_vectors = vectorizer.fit_transform(jobs['description'])

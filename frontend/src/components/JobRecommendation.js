@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import './JobRecommendation.css';
+import './JobRecommendation.css'; 
 
 const JobRecommendation = () => {
     const [resume, setResume] = useState('');
